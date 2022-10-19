@@ -1,0 +1,38 @@
+{
+   "name": "@curious/web",
+   "version": "0.1.0",
+   "private": true,
+   "scripts": {
+      "dev": "next dev -p 3333",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+   },
+   "dependencies": {
+      "@curious/trpc": "*",
+      "@tanstack/react-query": "^4.12.0",
+      "@trpc/client": "^10.0.0-proxy-beta.23",
+      "@trpc/next": "^10.0.0-proxy-beta.23",
+      "@trpc/react-query": "^10.0.0-proxy-beta.23",
+      "@trpc/server": "^10.0.0-proxy-beta.23",
+      "clsx": "^1.2.1",
+      "next": "12.3.1",
+      "next-seo": "^5.6.0",
+      "react": "18.2.0",
+      "react-dom": "18.2.0"
+   },
+   "devDependencies": {
+      "@next/bundle-analyzer": "^12.3.1",
+      "@types/node": "18.11.0",
+      "@types/react": "18.0.21",
+      "@types/react-dom": "18.0.6",
+      "autoprefixer": "^10.4.12",
+      "cssnano": "^5.1.13",
+      "eslint": "8.25.0",
+      "eslint-config-next": "12.3.1",
+      "postcss": "^8.4.18",
+      "tailwindcss": "^3.1.8",
+      "ts-node": "^10.9.1",
+      "typescript": "4.8.4"
+   }
+}

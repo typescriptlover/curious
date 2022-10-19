@@ -1,0 +1,89 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URI")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id          String  @id @default(cuid())
+    displayName String
+    username    String  @unique
+    email       String  @unique
+    password    String
+    avatar      String?
+    header      String?
+    bio         String?
+
+    following Follow[] @relation("followFrom")
+    followers Follow[] @relation("followTo")
+
+    posts            Post[]     @relation("posts")
+    questions        Question[] @relation("questionTo")
+    questionsCreated Question[] @relation("questionBy")
+    answers          Answer[]   @relation("answerTo")
+    answersCreated   Answer[]   @relation("answerBy")
+
+    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+
+    @@map("users")
+}
+
+model Follow {
+    id          String @id @default(cuid())
+    follower    User   @relation("followFrom", fields: [followerId], references: [id])
+    followerId  String
+    following   User   @relation("followTo", fields: [followingId], references: [id])
+    followingId String
+
+    createdAt DateTime @default(now())
+
+    @@map("follows")
+}
+
+model Post {
+    id          String   @id @default(cuid())
+    body        String
+    attachments String[]
+    by          User     @relation("posts", fields: [byId], references: [id])
+    byId        String
+
+    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+
+    @@map("posts")
+}
+
+model Question {
+    id       String  @id @default(cuid())
+    question String
+    answer   Answer? @relation("answerToQ")
+    to       User    @relation("questionTo", fields: [toId], references: [id])
+    toId     String
+    by       User    @relation("questionBy", fields: [byId], references: [id])
+    byId     String
+
+    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+
+    @@map("questions")
+}
+
+model Answer {
+    id         String   @id @default(cuid())
+    answer     String
+    question   Question @relation("answerToQ", fields: [questionId], references: [id])
+    questionId String   @unique
+    to         User     @relation("answerTo", fields: [toId], references: [id])
+    toId       String
+    by         User     @relation("answerBy", fields: [byId], references: [id])
+    byId       String
+
+    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+
+    @@map("answers")
+}

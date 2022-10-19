@@ -1,0 +1,16 @@
+{
+   "name": "curious",
+   "private": true,
+   "packageManager": "pnpm@7.13.0",
+   "scripts": {
+      "build": "turbo build",
+      "dev": "turbo dev --parallel",
+      "clean": "turbo clean",
+      "docker:build": "docker-compose -p curious -f docker-compose.dev.yml up -d --build",
+      "docker:up": "docker-compose -p curious -f docker-compose.dev.yml up -d",
+      "docker:down": "docker-compose -p curious -f docker-compose.dev.yml down -d"
+   },
+   "dependencies": {
+      "turbo": "^1.5.5"
+   }
+}

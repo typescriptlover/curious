@@ -1,0 +1,22 @@
+{
+   "name": "@curious/db",
+   "version": "0.1.0",
+   "main": "./index.ts",
+   "types": "./index.ts",
+   "license": "MIT",
+   "scripts": {
+      "clean": "rm -rf .turbo node_modules",
+      "generate": "prisma generate",
+      "migrate:dev": "prisma migrate dev",
+      "migrate:prod": "prisma migrate deploy",
+      "studio": "prisma studio"
+   },
+   "dependencies": {
+      "@prisma/client": "^4.4.0",
+      "prisma-exclude": "^1.0.2"
+   },
+   "devDependencies": {
+      "prisma": "^4.4.0",
+      "typescript": "^4.8.3"
+   }
+}

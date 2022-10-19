@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+   postgres:
+      container_name: curious_postgres
+      image: postgres:latest
+      restart: unless-stopped
+      environment:
+         - POSTGRES_USER=curious
+         - POSTGRES_PASSWORD=curious
+         - POSTGRES_DB=curious
+      volumes:
+         - postgres:/var/lib/postgres/data
+      ports:
+         - 5432:5432
+
+volumes:
+   postgres:
