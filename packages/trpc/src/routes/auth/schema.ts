@@ -4,17 +4,19 @@ import { emailRegex } from '../../lib/auth';
 
 export const registerSchema = z
    .object({
-      displayName: z.string(),
+      displayName: z.string().min(1, {
+         message: 'Display name must be 1 characters or more',
+      }),
       username: z
          .string()
          .min(2, {
-            message: 'username must be 2 characters or more',
+            message: 'Username must be 2 characters or more',
          })
          .max(20, {
-            message: 'username must be 20 characters or less',
+            message: 'Username must be 20 characters or less',
          }),
       email: z.string().refine((v) => v.match(emailRegex), {
-         message: 'email must be valid',
+         message: 'Email must be valid',
       }),
       avatar: z.string().optional(),
       password: z.string(),

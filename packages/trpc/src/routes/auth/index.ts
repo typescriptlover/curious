@@ -1,7 +1,7 @@
 import { t } from '../../router';
 
 import { TRPCError } from '@trpc/server';
-import { hash, compare } from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 import guard from '../../middlewares/guard';
 import already from '../../middlewares/already';
@@ -44,7 +44,7 @@ export default t.router({
             }
          }
 
-         const passwordHash = await hash(input.password, 8);
+         const passwordHash = await bcrypt.hash(input.password, 6);
 
          const user = await ctx.prisma.user.create({
             data: {
@@ -54,8 +54,13 @@ export default t.router({
             },
          });
 
+         const { password: _, ...payload } = user;
+
          return {
-            payload: await createToken(user),
+            context: {
+               token: await createToken(user.id),
+            },
+            payload,
          };
       }),
    login: t.procedure
@@ -77,7 +82,7 @@ export default t.router({
             });
          }
 
-         const valid = await compare(password, user.password);
+         const valid = await bcrypt.compare(password, user.password);
 
          if (!valid) {
             throw new TRPCError({
@@ -86,8 +91,13 @@ export default t.router({
             });
          }
 
+         const { password: _, ...payload } = user;
+
          return {
-            payload: await createToken(user),
+            context: {
+               token: await createToken(user.id),
+            },
+            payload,
          };
       }),
 });

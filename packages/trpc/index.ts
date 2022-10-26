@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 export { router } from './src/router';
 export type { AppRouter } from './src/router';
 

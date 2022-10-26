@@ -5,12 +5,12 @@ import { prisma, User } from '@curious/db';
 export const emailRegex =
    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export async function createToken(user: User) {
+export async function createToken(id: string) {
    const token = await sign(
       {
-         id: user.id,
+         id,
       },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET as string,
       {
          expiresIn: '1w',
       }
@@ -20,7 +20,10 @@ export async function createToken(user: User) {
 
 export async function getTokenUser(token: string) {
    try {
-      const data = (await verify(token, process.env.JWT_SECRET)) as any;
+      const data = (await verify(
+         token,
+         process.env.JWT_SECRET as string
+      )) as any;
 
       const user = await prisma.user.findUnique({
          where: {
