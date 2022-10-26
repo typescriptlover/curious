@@ -2,3 +2,4 @@ packages:
    - packages/db
    - packages/trpc
    - apps/web
+   - apps/api
