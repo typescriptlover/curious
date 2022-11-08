@@ -10,7 +10,7 @@
    },
    "dependencies": {
       "@curious/trpc": "*",
-      "@trpc/server": "^10.0.0-proxy-beta.23",
+      "@trpc/server": "^10.0.0-rc.2",
       "cors": "^2.8.5",
       "express": "^4.18.2"
    },

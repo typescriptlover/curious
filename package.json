@@ -11,6 +11,6 @@
       "docker:down": "docker-compose -p curious -f docker-compose.dev.yml down -d"
    },
    "dependencies": {
-      "turbo": "^1.5.5"
+      "turbo": "^1.6.2"
    }
 }

@@ -4,14 +4,14 @@ importers:
 
   .:
     specifiers:
-      turbo: ^1.5.5
+      turbo: ^1.6.2
     dependencies:
-      turbo: 1.5.6
+      turbo: 1.6.2
 
   apps/api:
     specifiers:
       '@curious/trpc': '*'
-      '@trpc/server': ^10.0.0-proxy-beta.23
+      '@trpc/server': ^10.0.0-rc.2
       '@types/cors': ^2.8.12
       '@types/express': ^4.17.14
       '@types/node': 18.11.0
@@ -22,7 +22,7 @@ importers:
       typescript: ^4.8.4
     dependencies:
       '@curious/trpc': link:../../packages/trpc
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/server': 10.0.0-rc.2
       cors: 2.8.5
       express: 4.18.2
     devDependencies:
@@ -39,10 +39,10 @@ importers:
       '@curious/trpc': '*'
       '@next/bundle-analyzer': ^12.3.1
       '@tanstack/react-query': ^4.12.0
-      '@trpc/client': ^10.0.0-proxy-beta.23
-      '@trpc/next': ^10.0.0-proxy-beta.23
-      '@trpc/react-query': ^10.0.0-proxy-beta.23
-      '@trpc/server': ^10.0.0-proxy-beta.23
+      '@trpc/client': ^10.0.0-rc.2
+      '@trpc/next': ^10.0.0-rc.2
+      '@trpc/react-query': ^10.0.0-rc.2
+      '@trpc/server': ^10.0.0-rc.2
       '@types/js-cookie': ^3.0.2
       '@types/ms': ^0.7.31
       '@types/node': 18.11.0
@@ -69,10 +69,10 @@ importers:
       '@curious/db': link:../../packages/db
       '@curious/trpc': link:../../packages/trpc
       '@tanstack/react-query': 4.12.0_react-dom@18.2.0+react@18.2.0
-      '@trpc/client': 10.0.0-proxy-beta.23_3df082c3ddd8a1006b3b641475e49a3e
-      '@trpc/next': 10.0.0-proxy-beta.23_c5b1154936e433ba19f3c82fc548acea
-      '@trpc/react-query': 10.0.0-proxy-beta.23_d2a80d913cdbadeb7118d4e1fcb59817
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/client': 10.0.0-rc.2_@trpc+server@10.0.0-rc.2
+      '@trpc/next': 10.0.0-rc.2_9a5a1a2303ae0d244f75351e3fcab0a3
+      '@trpc/react-query': 10.0.0-rc.2_7abca0c5778dbdbb4334320bba677c9a
+      '@trpc/server': 10.0.0-rc.2
       clsx: 1.2.1
       framer-motion: 7.6.1_react-dom@18.2.0+react@18.2.0
       js-cookie: 3.0.1
@@ -114,8 +114,8 @@ importers:
   packages/trpc:
     specifiers:
       '@curious/db': '*'
-      '@trpc/client': 10.0.0-proxy-beta.23
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/client': 10.0.0-rc.2
+      '@trpc/server': 10.0.0-rc.2
       '@types/bcrypt': ^5.0.0
       '@types/jsonwebtoken': ^8.5.9
       bcrypt: ^5.1.0
@@ -126,8 +126,8 @@ importers:
       zod: ^3.19.1
     dependencies:
       '@curious/db': link:../db
-      '@trpc/client': 10.0.0-proxy-beta.23_3df082c3ddd8a1006b3b641475e49a3e
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/client': 10.0.0-rc.2_@trpc+server@10.0.0-rc.2
+      '@trpc/server': 10.0.0-rc.2
       bcrypt: 5.1.0
       dotenv: 16.0.3
       imgur: 2.2.0
@@ -508,53 +508,53 @@ packages:
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /@trpc/client/10.0.0-proxy-beta.23_3df082c3ddd8a1006b3b641475e49a3e:
-    resolution: {integrity: sha512-rOySl64LESEN/sk4T8TMIAMDhqnb0O5rH/FwQuzFqZIOBQ+TtD41u6CfBynx5V1lXmhaETWdT0EaiUDAd5E1PA==}
+  /@trpc/client/10.0.0-rc.2_@trpc+server@10.0.0-rc.2:
+    resolution: {integrity: sha512-8GIehvg7QAdD9cSv++PrBnLQYXngTW0dIayNJPCYoaaUVAGew9/bJppYYXd17UQBNyVY+fAK0Q55E6HUYnYz2w==}
     peerDependencies:
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/server': 10.0.0-rc.2
     dependencies:
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/server': 10.0.0-rc.2
     dev: false
 
-  /@trpc/next/10.0.0-proxy-beta.23_c5b1154936e433ba19f3c82fc548acea:
-    resolution: {integrity: sha512-RCQuOvdJUJDA46DPUjDczpVpMWaFTzfGyX6W9/rVZLDGuVGqixNEy88kQ9QdcgPmswb8ZOvTZcAKqT0If64U7w==}
+  /@trpc/next/10.0.0-rc.2_9a5a1a2303ae0d244f75351e3fcab0a3:
+    resolution: {integrity: sha512-X8qeT3sbhir35aFoCiYKSBiiYZU7Ycrg99AoxCua6gcTQegKZp8+TZz/eOzlgKloV6yRZbz1fPDgPw0dvtrlRg==}
     peerDependencies:
       '@tanstack/react-query': ^4.3.8
-      '@trpc/client': 10.0.0-proxy-beta.23
+      '@trpc/client': 10.0.0-rc.2
       '@trpc/react-query': ^10.0.0-proxy-beta.21
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/server': 10.0.0-rc.2
       next: '*'
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@tanstack/react-query': 4.12.0_react-dom@18.2.0+react@18.2.0
-      '@trpc/client': 10.0.0-proxy-beta.23_3df082c3ddd8a1006b3b641475e49a3e
-      '@trpc/react-query': 10.0.0-proxy-beta.23_d2a80d913cdbadeb7118d4e1fcb59817
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/client': 10.0.0-rc.2_@trpc+server@10.0.0-rc.2
+      '@trpc/react-query': 10.0.0-rc.2_7abca0c5778dbdbb4334320bba677c9a
+      '@trpc/server': 10.0.0-rc.2
       next: 12.3.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-ssr-prepass: 1.5.0_react@18.2.0
     dev: false
 
-  /@trpc/react-query/10.0.0-proxy-beta.23_d2a80d913cdbadeb7118d4e1fcb59817:
-    resolution: {integrity: sha512-0p4nA/Frue+gzmD+8mRe9hGf4JEqT0hYxSuz+SgLMlwZtxi7FMNW56TteZfuevgu4Ta0wlGxCxIWdvxCYdSEeg==}
+  /@trpc/react-query/10.0.0-rc.2_7abca0c5778dbdbb4334320bba677c9a:
+    resolution: {integrity: sha512-g2PpkYvPp7P3s4UrwMqXqf2qGGwCkuyOiTW5BK7JBN4tUZaRAcEhCmnCvX9DNHu9N6fjOnuhGbsAfOgnXlicuA==}
     peerDependencies:
       '@tanstack/react-query': ^4.3.8
-      '@trpc/client': 10.0.0-proxy-beta.23
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/client': 10.0.0-rc.2
+      '@trpc/server': 10.0.0-rc.2
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@tanstack/react-query': 4.12.0_react-dom@18.2.0+react@18.2.0
-      '@trpc/client': 10.0.0-proxy-beta.23_3df082c3ddd8a1006b3b641475e49a3e
-      '@trpc/server': 10.0.0-proxy-beta.23
+      '@trpc/client': 10.0.0-rc.2_@trpc+server@10.0.0-rc.2
+      '@trpc/server': 10.0.0-rc.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@trpc/server/10.0.0-proxy-beta.23:
-    resolution: {integrity: sha512-WsUGhR80X40QlXyAEWVghkF3XhLm/si0apPjn7ydW/+WxKjoeKCM7zTHCGY+9qwLPiPNb2uRYV1sw8wucxRKEQ==}
+  /@trpc/server/10.0.0-rc.2:
+    resolution: {integrity: sha512-qxtEoqXnF/eACW9c9/B/UJ+RkMz3QobKzwoYBamXxDf2LEENjdfWmj7cdHRC637LUAS6YS6WmD3Lol8SD8RiGg==}
     dev: false
 
   /@trysound/sax/0.2.0:
@@ -3895,65 +3895,65 @@ packages:
       typescript: 4.8.4
     dev: true
 
-  /turbo-darwin-64/1.5.6:
-    resolution: {integrity: sha512-CWdXMwenBS2+QXIR2Czx7JPnAcoMzWx/QwTDcHVxZyeayMHgz8Oq5AHCtfaHDSfV8YhD3xa0GLSk6+cFt+W8BQ==}
+  /turbo-darwin-64/1.6.2:
+    resolution: {integrity: sha512-qzqVdJZcVeu1d0mzeSxffgeOToSgM+Hl1y9yDiJQ4QQjiR/WGCzS9FtydLnk0ori8T1j/lxiiQz2sHjHYfLCTg==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: false
     optional: true
 
-  /turbo-darwin-arm64/1.5.6:
-    resolution: {integrity: sha512-c/aXgW9JuXT2bJSKf01pdSDQKnrdcdj3WFKmKiVldb9We6eqFzI0fLHBK97k5LM/OesmRMfCMQ2Cv2DU8RqBAA==}
+  /turbo-darwin-arm64/1.6.2:
+    resolution: {integrity: sha512-EJvgWSjLwzJbAsqRuqeaYSdXNKwyiUfOfEOPerYCvwxC+ILiqpladjteMCzzF/z2OmIbPzuqZpyik30TfpIC9A==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: false
     optional: true
 
-  /turbo-linux-64/1.5.6:
-    resolution: {integrity: sha512-y/jNF7SG+XJEwk2GxIqy3g4dj/a0PgZKDGyOkp24qp4KBRcHBl6dI1ZEfNed30EhEqmW4F5Dr7IpeCZoqgbrMg==}
+  /turbo-linux-64/1.6.2:
+    resolution: {integrity: sha512-SJ5ThDApOyOavjvkYb6a1MKJbOvX4JEvSYxoZv+ZpN8g7A7x1SE9b7EnxFl26S4eyy0J4+r+YJBDBZ7sFkqRWQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: false
     optional: true
 
-  /turbo-linux-arm64/1.5.6:
-    resolution: {integrity: sha512-FRcxPtW7eFrbR3QaYBVX8cK7i+2Cerqi6F0t5ulcq+d1OGSdSW3l35rPPyJdwCzCy+k/S9sBcyCV0RtbS6RKCQ==}
+  /turbo-linux-arm64/1.6.2:
+    resolution: {integrity: sha512-0vHojVlvAelsYZo6p/xE9H9Dg8spNjXx+PO5RwP12ui8GuEqHb3Vomdb7AKDnWkIH7bpysNb9GbKEk7awQpGSg==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: false
     optional: true
 
-  /turbo-windows-64/1.5.6:
-    resolution: {integrity: sha512-/5KIExY7zbrbeL5fhKGuO85u5VtJ3Ue4kI0MbYCNnTGe7a10yTYkwswgtGihsgEF4AW0Nm0159aHmXZS2Le8IA==}
+  /turbo-windows-64/1.6.2:
+    resolution: {integrity: sha512-j4mJmY5pEt7OaBXDM99BpDnJuSpiLVbVbUl4Ezp8w3gyIcGuxy3wAfLbQyZSLu8ke6R9SdmXIBAM2Y0MjS/Z1g==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: false
     optional: true
 
-  /turbo-windows-arm64/1.5.6:
-    resolution: {integrity: sha512-p+LQN9O39+rZuOAyc6BzyVGvdEKo+v+XmtdeyZsZpfj4xuOLtsEptW1w6cUD439u0YcPknuccGq1MQ0lXQ6Xuw==}
+  /turbo-windows-arm64/1.6.2:
+    resolution: {integrity: sha512-AlDYjxPU21YSefP3qMl/Zys5spglXtaBt2ZF5N2+OWcjiJZ/0mIIc69oFdzuAuiyoYkyWMdkoCSGwuljtl31vg==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: false
     optional: true
 
-  /turbo/1.5.6:
-    resolution: {integrity: sha512-xJO/fhiMo4lI62iGR9OgUfJTC9tnnuoMwNC52IfvvBDEPlA8RWGMS8SFpDVG9bNCXvVRrtUTNJXMe6pJWBiOTA==}
+  /turbo/1.6.2:
+    resolution: {integrity: sha512-a6UM9HaAjM5ai+vxDFI/z0l4Bf6zWjf7wCf9Ip2iyd4XZkZZnhRtM6FpaUWzorjz9Dsqnfwu3nkWY3wPdH02IQ==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: 1.5.6
-      turbo-darwin-arm64: 1.5.6
-      turbo-linux-64: 1.5.6
-      turbo-linux-arm64: 1.5.6
-      turbo-windows-64: 1.5.6
-      turbo-windows-arm64: 1.5.6
+      turbo-darwin-64: 1.6.2
+      turbo-darwin-arm64: 1.6.2
+      turbo-linux-64: 1.6.2
+      turbo-linux-arm64: 1.6.2
+      turbo-windows-64: 1.6.2
+      turbo-windows-arm64: 1.6.2
     dev: false
 
   /type-check/0.4.0:
