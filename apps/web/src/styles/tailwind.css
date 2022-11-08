@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+   textarea {
+      height: auto;
+   }
    .will-change {
       will-change: transform;
    }

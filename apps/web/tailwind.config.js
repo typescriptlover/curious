@@ -33,6 +33,9 @@ module.exports = {
             ...colors,
             ...tailwindColors,
          },
+         transitionProperty: {
+            height: 'height',
+         },
       },
    },
    variants: {
