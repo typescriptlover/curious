@@ -5,3 +5,16 @@ export const excludeUserSafe = prisma.$exclude('user', [
    'email',
    'updatedAt',
 ]);
+
+export const excludeAnswerUseless = prisma.$exclude('answer', [
+   'updatedAt',
+   'questionId',
+   'byId',
+   'toId',
+]);
+
+export const excludeQuestionUseless = prisma.$exclude('question', [
+   'updatedAt',
+   'byId',
+   'toId',
+]);

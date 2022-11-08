@@ -1,4 +1,4 @@
-import { initTRPC } from '@trpc/server';
+import { inferProcedureOutput, initTRPC } from '@trpc/server';
 import { ZodError } from 'zod';
 
 import type { Context } from './context';
@@ -18,10 +18,14 @@ export const t = initTRPC.context<Context>().create({
    },
 });
 
-import { auth } from './routes';
+import { auth, user, question, answer, post } from './routes';
 
 export const router = t.router({
    auth,
+   user,
+   question,
+   answer,
+   post,
 });
 
 export type AppRouter = typeof router;
