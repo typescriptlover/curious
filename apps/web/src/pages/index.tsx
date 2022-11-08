@@ -1,12 +1,13 @@
 import type { NextPage } from 'next';
 
 import Link from 'next/link';
+import Feed from '../components/Landing/Feed';
 
 const Landing: NextPage = () => {
    return (
       <div className="w-full max-w-6xl m-auto">
          <div className="grid grid-cols-2">
-            <div className="flex justify-center w-full">
+            <div className="flex items-start justify-center w-full">
                <div className="w-full max-w-md">
                   <h2 className="relative text-5xl font-bold tracking-tight">
                      Explore curiosity,
@@ -16,7 +17,7 @@ const Landing: NextPage = () => {
                         </span>
                      </div>
                   </h2>
-                  <h2 className="relative mt-2 text-5xl text-rose-500 font-extrabold tracking-tight">
+                  <h2 className="relative mt-2 text-5xl font-extrabold tracking-tight text-rose-500">
                      together.
                      <div className="absolute top-0 left-0 text-5xl -ml-6 mt-6 z-[-10]">
                         <span className="inline-block opacity-20 text-rose-400">
@@ -42,6 +43,9 @@ const Landing: NextPage = () => {
                      others
                   </div>
                </div>
+            </div>
+            <div className="flex items-start justify-center w-full">
+               <Feed />
             </div>
          </div>
       </div>
