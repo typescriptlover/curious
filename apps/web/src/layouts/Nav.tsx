@@ -1,11 +1,55 @@
-import Link from 'next/link';
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import User from '../components/Nav/User';
+import Link from '../components/ui/Link';
+
+import { useAuth } from '../contexts/auth';
+
+interface NavLinkProps {
+   href: string;
+   children: React.ReactNode;
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
+   return (
+      <Link
+         href={href}
+         className="font-medium transition duration-200 ease-linear text-zinc-300 hover:text-white"
+      >
+         {children}
+      </Link>
+   );
+};
 
 const Nav = () => {
-   // bg-base-850/75 border border-base-750
+   const { auth } = useAuth();
+   const router = useRouter();
+
+   const [scrolled, setScrolled] = useState<boolean>(false);
+
+   useEffect(() => {
+      function onScroll(e: any) {
+         const top = window.pageYOffset || document.documentElement.scrollTop;
+         if (top < 10) {
+            setScrolled(false);
+         } else {
+            setScrolled(true);
+         }
+      }
+
+      document.addEventListener('scroll', onScroll);
+      return () => document.removeEventListener('scroll', onScroll);
+   }, []);
+
    return (
-      <nav className="fixed inset-x-0 top-0 z-[100] px-5">
+      <nav
+         className={clsx(
+            'fixed inset-x-0 top-0 z-[100] px-5 pointer-events-none'
+         )}
+      >
          <div className="flex items-center justify-between w-full h-20 max-w-6xl mx-auto">
-            <div>
+            <div className="flex items-center gap-x-12 pointer-events-auto">
                <Link href="/">
                   <h1 className="text-2xl font-bold cursor-pointer group">
                      <span className="inline-block group-hover:opacity-100 will-change group-hover:scale-105 transition duration-200 ease-linear mr-2.5 text-xl opacity-50 text-rose-400 rotate-[14deg]">
@@ -14,9 +58,14 @@ const Nav = () => {
                      curious
                   </h1>
                </Link>
+               {!auth && router.asPath === '/' && (
+                  <div>
+                     <NavLink href="/explore">Explore</NavLink>
+                  </div>
+               )}
             </div>
-            <div className="flex items-center gap-x-5">
-               <div className="relative w-64 group">
+            <div className="flex max-w-[18rem] w-full items-center gap-x-4 pointer-events-auto">
+               <div className="relative flex-1 group">
                   <input
                      type="text"
                      placeholder="Find a user"
@@ -28,11 +77,17 @@ const Nav = () => {
                      </span>
                   </div>
                </div>
-               <Link href="/login">
-                  <button className="relative block px-4 py-2 text-sm font-semibold transition duration-200 ease-linear rounded-lg bg-rose-600 hover:ring-2 hover:ring-rose-600">
-                     Log in
-                  </button>
-               </Link>
+               <div>
+                  {auth ? (
+                     <User />
+                  ) : (
+                     <Link href="/login">
+                        <button className="relative block px-4 py-2 text-sm font-semibold transition duration-200 ease-linear rounded-lg bg-rose-500 hover:ring-2 hover:ring-rose-500">
+                           Log in
+                        </button>
+                     </Link>
+                  )}
+               </div>
             </div>
          </div>
       </nav>

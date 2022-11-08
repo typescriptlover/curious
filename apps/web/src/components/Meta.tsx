@@ -23,7 +23,7 @@ const Meta: React.FC<Props> = (props) => (
       </Head>
 
       <NextSeo
-         title={props.title ? SEO.title + ' • ' + props.title : SEO.title}
+         title={props.title ? props.title + ' • ' + SEO.title : SEO.title}
          description={props.description || SEO.description}
          canonical={props.canonical || SEO.canonical}
          openGraph={{
