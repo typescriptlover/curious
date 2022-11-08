@@ -1,7 +1,7 @@
 export const SEO = {
-   site_name: 'nextstart',
+   site_name: 'curious',
    canonical: 'https://nextstart.app/',
-   title: 'nextstart',
+   title: 'curious',
    description: 'a basic next template using typescript',
    locale: 'en',
 };
