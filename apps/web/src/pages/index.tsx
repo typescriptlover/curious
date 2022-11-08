@@ -2,13 +2,13 @@ import type { NextPage } from 'next';
 
 import Link from 'next/link';
 
-const Index: NextPage = () => {
+const Landing: NextPage = () => {
    return (
-      <div className="w-full max-w-6xl m-auto mx-auto">
+      <div className="w-full max-w-6xl m-auto">
          <div className="grid grid-cols-2">
             <div className="flex justify-center w-full">
                <div className="w-full max-w-md">
-                  <h2 className="relative text-5xl font-extrabold tracking-tight">
+                  <h2 className="relative text-5xl font-bold tracking-tight">
                      Explore curiosity,
                      <div className="absolute top-0 right-0 text-8xl mr-16 mt-2 z-[-10]">
                         <span className="inline-block rotate-[24deg] opacity-25 text-rose-400">
@@ -16,10 +16,10 @@ const Index: NextPage = () => {
                         </span>
                      </div>
                   </h2>
-                  <h2 className="relative mt-2 text-5xl font-extrabold tracking-tight">
+                  <h2 className="relative mt-2 text-5xl text-rose-500 font-extrabold tracking-tight">
                      together.
                      <div className="absolute top-0 left-0 text-5xl -ml-6 mt-6 z-[-10]">
-                        <span className="inline-block opacity-25 text-rose-400">
+                        <span className="inline-block opacity-20 text-rose-400">
                            <i className="fa-duotone fa-comments" />
                         </span>
                      </div>
@@ -48,4 +48,4 @@ const Index: NextPage = () => {
    );
 };
 
-export default Index;
+export default Landing;
