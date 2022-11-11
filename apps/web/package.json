@@ -13,6 +13,7 @@
       "@curious/db": "*",
       "@curious/trpc": "*",
       "@tanstack/react-query": "^4.12.0",
+      "@tippyjs/react": "^4.2.6",
       "@trpc/client": "^10.0.0-rc.2",
       "@trpc/next": "^10.0.0-rc.2",
       "@trpc/react-query": "^10.0.0-rc.2",
