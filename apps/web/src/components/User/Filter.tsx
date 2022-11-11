@@ -16,6 +16,7 @@ const Filter: React.FC<FilterProps> = ({ filters, filter, setFilter }) => {
          <div className="flex items-center w-full mt-12 gap-x-4">
             {filters.map((f) => (
                <button
+                  key={f}
                   onClick={() => setFilter(f)}
                   className={clsx(
                      'text-[0.9rem] font-semibold will-change rounded-xl py-2.5 px-3 transition duration-200 ease-linear',

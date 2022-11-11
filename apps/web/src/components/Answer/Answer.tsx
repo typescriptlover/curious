@@ -3,6 +3,7 @@ import Actions from '../ui/Actions';
 import { TAnswer } from '../../types/types';
 import Link from '../ui/Link';
 import { useAuth } from '../../contexts/auth';
+import getImage from '../../lib/image';
 
 interface Props {
    answer: TAnswer;
@@ -19,8 +20,8 @@ const Answer: React.FC<Props> = ({ answer }) => {
                className="inline-flex items-center group gap-x-4"
             >
                <img
-                  className="transition duration-200 ease-linear rounded-full w-11 h-11 will-change group-hover:scale-105"
-                  src="https://data.whicdn.com/images/361702603/original.jpg"
+                  className="object-cover transition duration-200 ease-linear rounded-full w-11 h-11 will-change group-hover:scale-105"
+                  src={getImage(answer.question.by.avatar)}
                />
                <div>
                   <div className="text-base font-medium">
@@ -38,8 +39,8 @@ const Answer: React.FC<Props> = ({ answer }) => {
          <div className="mt-4 text-base font-semibold">{answer.answer}</div>
          <div className="flex items-center mt-3 gap-x-4">
             <img
-               className="rounded-full w-9 h-9"
-               src="https://data.whicdn.com/images/355760513/original.png"
+               className="object-cover rounded-full w-9 h-9"
+               src={getImage(answer.by.avatar)}
             />
             <div>
                <div className="text-base font-medium">
