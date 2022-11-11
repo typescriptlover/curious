@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import getImage from '../../lib/image';
 
 import { TPost } from '../../types/types';
 
@@ -24,14 +25,14 @@ const Attachments: React.FC<Props> = ({ attachments }) => {
                <div className="w-full h-full">
                   <img
                      className="object-cover w-full h-full rounded-2xl"
-                     src={`https://i.imgur.com/${attachments[0]}.jpg`}
+                     src={getImage(attachments[0])}
                   />
                </div>
                {attachments.length === 4 && (
                   <div className="w-full h-full">
                      <img
                         className="object-cover w-full h-full rounded-2xl"
-                        src={`https://i.imgur.com/${attachments[2]}.jpg`}
+                        src={getImage(attachments[2])}
                      />
                   </div>
                )}
@@ -46,18 +47,18 @@ const Attachments: React.FC<Props> = ({ attachments }) => {
                   <div className="w-full h-full">
                      <img
                         className="object-cover w-full h-full rounded-2xl"
-                        src={`https://i.imgur.com/${attachments[1]}.jpg`}
+                        src={getImage(attachments[1])}
                      />
                   </div>
                   {attachments.length > 2 && (
                      <div className="w-full h-full">
                         <img
                            className="object-cover w-full h-full rounded-2xl"
-                           src={`https://i.imgur.com/${
+                           src={getImage(
                               attachments.length === 4
                                  ? attachments[3]
                                  : attachments[2]
-                           }.jpg`}
+                           )}
                         />
                      </div>
                   )}

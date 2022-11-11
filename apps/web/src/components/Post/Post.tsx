@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useAuth } from '../../contexts/auth';
+import getImage from '../../lib/image';
 import { TPost } from '../../types/types';
 import Actions from '../ui/Actions';
 import Attachments from './Attachments';
@@ -15,8 +16,8 @@ const Post: React.FC<Props> = ({ post }) => {
       <div className="w-full p-5 bg-base-700 rounded-2xl">
          <div className="flex items-center gap-x-4">
             <img
-               className="w-12 h-12 rounded-full"
-               src="https://data.whicdn.com/images/355760513/original.png"
+               className="object-cover w-12 h-12 rounded-full"
+               src={getImage(post.by.avatar)}
             />
             <div>
                <div className="text-lg font-semibold">

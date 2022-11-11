@@ -8,6 +8,7 @@ import Link from '../ui/Link';
 import { useAuth } from '../../contexts/auth';
 import { IAuthContextForce } from '../../types/interfaces';
 import { useRouter } from 'next/router';
+import getImage from '../../lib/image';
 
 interface DropdownLinkProps extends LinkProps {
    children: React.ReactNode;
@@ -61,8 +62,6 @@ const User = () => {
       return router.push('/');
    }
 
-   // https://i.imgur.com/fYcODaP.png
-
    return (
       <div ref={ref} className="relative flex-shrink-0">
          <button
@@ -74,14 +73,14 @@ const User = () => {
                   'h-9 w-9 transition duration-200 ease-linear will-change rounded-full object-cover',
                   showDropdown ? 'scale-105' : ' group-hover:scale-105'
                )}
-               src="https://data.whicdn.com/images/355760513/original.png"
+               src={auth.avatar ? getImage(auth.avatar) : getImage('')}
             />
          </button>
          <Dropdown
             ref={ref}
             showDropdown={showDropdown}
             setShowDropdown={setShowDropdown}
-            className="p-2 border-2 bg-base-850 border-base-750 w-36 rounded-xl shadow-2xl"
+            className="p-2 border-2 shadow-2xl bg-base-850 border-base-750 w-36 rounded-xl"
          >
             <div className="flex flex-col">
                <DropdownLink href={`/@${auth.username}`}>
