@@ -7,7 +7,6 @@ import guard from '../../middlewares/guard';
 import already from '../../middlewares/already';
 import { loginSchema, registerSchema } from './schema';
 import { createToken } from '../../lib/auth';
-import { uploadImage } from '../../lib/image';
 
 export default t.router({
    me: t.procedure.use(guard).query(({ ctx }) => ({
@@ -49,7 +48,6 @@ export default t.router({
          const user = await ctx.prisma.user.create({
             data: {
                ...input,
-               avatar: input.avatar ? await uploadImage(input.avatar) : null,
                password: passwordHash,
             },
          });

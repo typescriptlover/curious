@@ -2,16 +2,16 @@ import { t } from '../../router';
 
 import { TRPCError } from '@trpc/server';
 
-import { getAllSchema, userSchema } from './schema';
+import { editProfileSchema, getAllSchema, userSchema } from './schema';
 import {
    excludeAnswerUseless,
    excludeQuestionUseless,
    excludeUserSafe,
 } from '../../lib/exclude';
 import { calculatePaginate, paginatePer } from '../../lib/paginate';
-import { Answer, Post } from '@curious/db';
 import { includeUserNecessary } from '../../lib/include';
-import { hasOwnProperty } from '../../lib/helpers';
+import guard from '../../middlewares/guard';
+import { uploadImage } from '../../lib/image';
 
 // TODO: edit profile
 export default t.router({
@@ -138,4 +138,49 @@ export default t.router({
          },
       };
    }),
+   editProfile: t.procedure
+      .use(guard)
+      .input(editProfileSchema)
+      .mutation(async ({ ctx, input }) => {
+         const { displayName, username, header, avatar, bio } = input;
+
+         const authUser = ctx.user!;
+
+         if (username) {
+            const existing = await ctx.prisma.user.findFirst({
+               where: {
+                  username,
+               },
+            });
+
+            if (existing) {
+               throw new TRPCError({
+                  code: 'PARSE_ERROR',
+                  message: 'Username already taken',
+               });
+            }
+         }
+
+         const user = await ctx.prisma.user.update({
+            where: {
+               id: authUser.id,
+            },
+            data: {
+               displayName,
+               username,
+               header: header
+                  ? await uploadImage(header.split(',')[1]!)
+                  : undefined,
+               avatar: avatar
+                  ? await uploadImage(avatar.split(',')[1]!)
+                  : undefined,
+               bio,
+            },
+            select: ctx.prisma.$exclude('user', ['password']),
+         });
+
+         return {
+            payload: user,
+         };
+      }),
 });
