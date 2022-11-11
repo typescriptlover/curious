@@ -1,10 +1,12 @@
+import clsx from 'clsx';
 import { RouterOutputs, trpc } from '../../../lib/trpc';
 
 interface Props {
    username: string;
+   isEditing: boolean;
 }
 
-const Analytics: React.FC<Props> = ({ username }) => {
+const Analytics: React.FC<Props> = ({ username, isEditing }) => {
    const { data, error, isLoading } = trpc.user.getAnalytics.useQuery({
       username,
    });
@@ -20,7 +22,12 @@ const Analytics: React.FC<Props> = ({ username }) => {
    }
 
    return (
-      <div className="grid w-full grid-cols-4 mt-8 gap-x-2">
+      <div
+         className={clsx(
+            'grid w-full grid-cols-4 mt-8 gap-x-2',
+            isEditing && 'opacity-50'
+         )}
+      >
          <div className="p-4 rounded-lg bg-base-750">
             <div className="text-lg font-semibold text-rose-400">
                {displayCount('questions')}

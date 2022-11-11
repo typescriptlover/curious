@@ -3,11 +3,15 @@ import { useState } from 'react';
 import { useAuth } from '../../../contexts/auth';
 import Actions from '../../ui/Actions';
 import Analytics from './Analytics';
-import Follow from './Follow';
-import Notifications from './Notifications';
+import Header from './Header';
+import Avatar from './Avatar';
+import Info from './Info';
+import Follow from './Toggle/Follow';
+import Edit from './Toggle/Edit';
+import useCancelState from '../../../hooks/useCancelState';
 
 import { TUser } from '../../../types/types';
-import Edit from './Edit';
+import { RouterInputs } from '../../../lib/trpc';
 
 interface Props {
    user: TUser;
@@ -17,47 +21,79 @@ const Profile: React.FC<Props> = ({ user }) => {
    const { auth } = useAuth();
 
    const [isEditing, setIsEditing] = useState<boolean>(false);
+   const [edit, setEdit, cancelEdit] = useCancelState<
+      RouterInputs['user']['editProfile']
+   >({
+      displayName: undefined,
+      username: undefined,
+      header: undefined,
+      avatar: undefined,
+   });
+
+   function updateEdit(newEdit: typeof edit) {
+      setEdit({
+         ...edit,
+         ...newEdit,
+      });
+   }
+
+   function changeEdit(
+      value: any,
+      key: keyof RouterInputs['user']['editProfile']
+   ) {
+      if (!value || value === user[key]) {
+         updateEdit({
+            [key]: undefined,
+         });
+      } else {
+         updateEdit({
+            [key]: value,
+         });
+      }
+   }
 
    return (
       <div>
-         <div className="relative w-full h-44">
-            <div className="absolute inset-0 overflow-hidden rounded-xl bg-base-900">
-               <img
-                  className="object-cover w-full h-full -z-10 opacity-30"
-                  src="https://data.whicdn.com/images/324215715/original.jpg"
+         <Header
+            user={user}
+            edit={edit}
+            isEditing={isEditing}
+            changeEdit={changeEdit}
+         />
+         <div className="p-5 -mt-2 border-2 bg-base-850 border-base-750 rounded-b-xl">
+            <div className="flex items-center justify-between">
+               <Avatar
+                  user={user}
+                  edit={edit}
+                  isEditing={isEditing}
+                  changeEdit={changeEdit}
                />
+               {auth && (
+                  <div className="flex items-center gap-x-4">
+                     {auth.username !== user.username ? (
+                        <>
+                           <Follow />
+                           <Actions direction="horizontal" actions={{}} />
+                        </>
+                     ) : (
+                        <Edit
+                           edit={edit}
+                           updateEdit={updateEdit}
+                           cancelEdit={cancelEdit}
+                           isEditing={isEditing}
+                           setIsEditing={setIsEditing}
+                        />
+                     )}
+                  </div>
+               )}
             </div>
-         </div>
-         <div className="p-5 -mt-4 border-2 bg-base-850 border-base-750 -z-10 rounded-xl">
-            <div className="relative z-20 flex items-start justify-between -mt-14">
-               <div className="inline-block p-2 rounded-full bg-base-850">
-                  <img
-                     src="https://data.whicdn.com/images/355760513/original.png"
-                     className="w-24 h-24 rounded-full"
-                  />
-               </div>
-               <div className="flex items-center mt-16 gap-x-4">
-                  {auth && auth.username !== user.username ? (
-                     <>
-                        <Follow />
-                        <Actions direction="horizontal" actions={{}} />
-                        <Notifications />
-                     </>
-                  ) : (
-                     <Edit isEditing={isEditing} setIsEditing={setIsEditing} />
-                  )}
-               </div>
-            </div>
-            <div className="px-2">
-               <h2 className="text-xl font-bold">{user.displayName}</h2>
-               <div className="text-sm font-semibold text-rose-400">
-                  @{user.username}
-               </div>
-               <div className="mt-4 text-sm font-medium text-zinc-300">
-                  {user.bio ?? 'No bio set.'}
-               </div>
-            </div>
-            <Analytics username={user.username} />
+            <Info
+               user={user}
+               edit={edit}
+               isEditing={isEditing}
+               changeEdit={changeEdit}
+            />
+            <Analytics username={user.username} isEditing={isEditing} />
          </div>
       </div>
    );
