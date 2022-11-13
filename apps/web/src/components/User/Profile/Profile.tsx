@@ -12,6 +12,7 @@ import useCancelState from '../../../hooks/useCancelState';
 
 import { TUser } from '../../../types/types';
 import { RouterInputs } from '../../../lib/trpc';
+import Block from '../../Actions/Block';
 
 interface Props {
    user: TUser;
@@ -73,7 +74,9 @@ const Profile: React.FC<Props> = ({ user }) => {
                      {auth.username !== user.username ? (
                         <>
                            <Follow />
-                           <Actions direction="horizontal" actions={{}} />
+                           <Actions direction="horizontal">
+                              <Block />
+                           </Actions>
                         </>
                      ) : (
                         <Edit
