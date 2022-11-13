@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
+import getImage from '../../../lib/image';
 import { RouterInputs } from '../../../lib/trpc';
 import { TUser } from '../../../types/types';
 import Tooltip from '../../ui/Tooltip';
@@ -55,7 +56,11 @@ const Header: React.FC<Props> = ({ user, isEditing, edit, changeEdit }) => {
                      'object-cover w-full h-full -z-10',
                      isEditing ? 'opacity-25' : 'opacity-40'
                   )}
-                  src={edit.header ?? `https://i.imgur.com/${user.header}.jpg`}
+                  src={
+                     edit.header || user.header
+                        ? edit.header ?? getImage(user.header)
+                        : getImage('')
+                  }
                />
             ) : (
                <div className="w-full h-full bg-rose-400/20" />

@@ -29,14 +29,16 @@ const Landing: NextPage = () => {
                      Ask, answer, post. Connect with your favorite creators,
                      friends or anyone across the globe.
                   </div>
-                  <Link href="/register">
-                     <button className="px-5 py-3 mt-10 font-semibold transition duration-200 ease-linear rounded-lg shadow-sm group hover:shadow-2xl bg-rose-600 hover:bg-rose-500">
-                        Start your journey
-                        <span className="inline-block ml-3 -mr-1 text-xs transition duration-200 ease-in-out group-hover:translate-x-1 will-change text-rose-300">
-                           <i className="fa-regular fa-chevrons-right" />
-                        </span>
-                     </button>
-                  </Link>
+                  <div className="mt-10">
+                     <Link href="/register">
+                        <button className="px-5 py-3 font-semibold transition duration-200 ease-linear rounded-lg shadow-sm group hover:shadow-2xl bg-rose-600 hover:bg-rose-500">
+                           Start your journey
+                           <span className="inline-block ml-3 -mr-1 text-xs transition duration-200 ease-in-out group-hover:translate-x-1 will-change text-rose-300">
+                              <i className="fa-regular fa-chevrons-right" />
+                           </span>
+                        </button>
+                     </Link>
+                  </div>
                   <div className="mt-2 text-sm italic font-medium text-zinc-400">
                      join{' '}
                      <span className="font-semibold text-rose-400">23,000</span>{' '}

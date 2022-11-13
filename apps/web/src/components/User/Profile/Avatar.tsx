@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
+import getImage from '../../../lib/image';
 import { RouterInputs } from '../../../lib/trpc';
 import { TUser } from '../../../types/types';
 import Tooltip from '../../ui/Tooltip';
@@ -51,8 +52,8 @@ const Avatar: React.FC<Props> = ({ user, isEditing, edit, changeEdit }) => {
          <img
             src={
                edit.avatar || user.avatar
-                  ? edit.avatar ?? `https://i.imgur.com/${user.avatar}.png`
-                  : 'https://i.imgur.com/1IZZSNx.png'
+                  ? edit.avatar ?? getImage(user.avatar)
+                  : getImage('')
             }
             className={clsx(
                'object-cover w-24 h-24 rounded-full',

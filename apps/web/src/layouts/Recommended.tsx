@@ -1,11 +1,11 @@
 const Recommended = () => {
    return (
-      <div className="sticky top-0 max-w-[18rem] min-w-[18rem] w-full pt-[6.25rem] -mt-[6.25rem]">
-         <div className="relative rounded-xl overflow-hidden border-2 border-base-750">
-            <div className="py-4 px-5 bg-base-750">
+      <div className="sticky self-start top-0 pt-[6.25rem] -mt-[6.25rem]">
+         <div className="relative overflow-hidden border-2 rounded-xl border-base-750">
+            <div className="px-5 py-4 bg-base-750">
                <h2 className="text-xl font-semibold">Recommended</h2>
             </div>
-            <div className="py-4 px-5 bg-base-800">
+            <div className="px-5 py-4 bg-base-800">
                <div className="flex flex-col gap-y-6">
                   <div className="flex items-start gap-x-4">
                      <img
