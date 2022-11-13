@@ -1,5 +1,11 @@
 import clsx from 'clsx';
-import { Dispatch, SetStateAction, TextareaHTMLAttributes } from 'react';
+import {
+   Dispatch,
+   SetStateAction,
+   TextareaHTMLAttributes,
+   useMemo,
+} from 'react';
+import Spinner from './Spinner';
 
 type Tools = 'images' | 'at' | 'emojis';
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -12,6 +18,7 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
    max: number;
    parentClassName?: string;
    className?: string;
+   loading?: boolean;
 }
 
 const Write: React.FC<Props> = ({
@@ -24,9 +31,14 @@ const Write: React.FC<Props> = ({
    max,
    parentClassName,
    className,
+   loading,
    ...props
 }) => {
    const enabled = (tool: Tools) => tools.includes(tool);
+   const invalid = useMemo(
+      () => value.length < 1 || value.length > max,
+      [value, max]
+   );
 
    return (
       <div
@@ -64,17 +76,29 @@ const Write: React.FC<Props> = ({
                )}
             </div>
             <div className="flex items-center gap-x-4">
-               <span className="text-sm font-medium transition duration-200 ease-linear text-zinc-400 group-focus-within:text-white">
-                  0/{max}
+               <span
+                  className={clsx(
+                     'text-sm font-medium transition duration-200 ease-linear text-zinc-400 group-focus-within:text-white',
+                     invalid && 'line-through'
+                  )}
+               >
+                  {value.length}/{max}
                </span>
                <button
+                  disabled={invalid}
                   onClick={onAction ?? undefined}
-                  className="px-5 py-2 text-sm font-bold text-white transition duration-200 ease-linear rounded-lg bg-rose-500 hover:ring-2 hover:ring-rose-500"
+                  className="px-5 py-2 text-sm font-bold text-white transition duration-200 ease-linear rounded-lg disabled:opacity-75 disabled:cursor-not-allowed bg-rose-500 disabled:hover:ring-0 hover:ring-2 hover:ring-rose-500"
                >
-                  {action}
-                  <span className="ml-2 -mr-2 text-xs text-rose-200">
-                     <i className={'fa-solid fa-fw fa-' + icon} />
-                  </span>
+                  {loading ? (
+                     <Spinner className="w-[1.25rem] h-[1.25rem] text-rose-300" />
+                  ) : (
+                     <>
+                        {action}
+                        <span className="ml-2 -mr-2 text-xs text-rose-200">
+                           <i className={'fa-solid fa-fw fa-' + icon} />
+                        </span>
+                     </>
+                  )}
                </button>
             </div>
          </div>

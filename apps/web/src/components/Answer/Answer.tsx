@@ -4,6 +4,10 @@ import { TAnswer } from '../../types/types';
 import Link from '../ui/Link';
 import { useAuth } from '../../contexts/auth';
 import getImage from '../../lib/image';
+import { useMemo } from 'react';
+import Delete from '../Actions/Delete';
+import Block from '../Actions/Block';
+import Copy from '../Actions/Copy';
 
 interface Props {
    answer: TAnswer;
@@ -32,11 +36,13 @@ const Answer: React.FC<Props> = ({ answer }) => {
                   </div>
                </div>
             </Link>
-            <div className="mt-3 text-base font-semibold">
+            <div className="mt-2 text-base font-semibold break-words">
                {answer.question.question}
             </div>
          </div>
-         <div className="mt-4 text-base font-semibold">{answer.answer}</div>
+         <div className="mt-4 text-base overflow-auto font-semibold break-words">
+            {answer.answer}
+         </div>
          <div className="flex items-center mt-3 gap-x-4">
             <img
                className="object-cover rounded-full w-9 h-9"
@@ -61,7 +67,13 @@ const Answer: React.FC<Props> = ({ answer }) => {
                   7
                </button>
             </div>
-            <Actions direction="horizontal" actions={{}} />
+            <Actions direction="horizontal">
+               {auth && auth.username === answer.by.username ? (
+                  <Delete />
+               ) : (
+                  <Copy />
+               )}
+            </Actions>
          </div>
       </div>
    );

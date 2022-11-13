@@ -2,6 +2,9 @@ import clsx from 'clsx';
 import { useAuth } from '../../contexts/auth';
 import getImage from '../../lib/image';
 import { TPost } from '../../types/types';
+import Block from '../Actions/Block';
+import Copy from '../Actions/Copy';
+import Delete from '../Actions/Delete';
 import Actions from '../ui/Actions';
 import Attachments from './Attachments';
 
@@ -13,7 +16,7 @@ const Post: React.FC<Props> = ({ post }) => {
    const { auth } = useAuth();
 
    return (
-      <div className="w-full p-5 bg-base-700 rounded-2xl">
+      <div className="w-full overflow-auto p-5 bg-base-700 rounded-2xl">
          <div className="flex items-center gap-x-4">
             <img
                className="object-cover w-12 h-12 rounded-full"
@@ -28,7 +31,7 @@ const Post: React.FC<Props> = ({ post }) => {
                </div>
             </div>
          </div>
-         <div className="mt-5 font-semibold">{post.body}</div>
+         <div className="mt-5 grid font-semibold break-words">{post.body}</div>
          {!!post.attachments.length && (
             <Attachments attachments={post.attachments} />
          )}
@@ -42,7 +45,13 @@ const Post: React.FC<Props> = ({ post }) => {
                   3
                </button>
             </div>
-            <Actions direction="horizontal" actions={{}} />
+            <Actions direction="horizontal">
+               {auth && auth.username === post.by.username ? (
+                  <Delete />
+               ) : (
+                  <Copy />
+               )}
+            </Actions>
          </div>
       </div>
    );

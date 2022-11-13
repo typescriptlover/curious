@@ -31,7 +31,7 @@ const Question: React.FC<Props> = ({ question }) => {
    }
 
    return (
-      <div className="flex flex-col gap-y-1">
+      <div className="flex flex-col w-full overflow-auto gap-y-1">
          <div className="w-full p-5 border rounded-xl bg-base-800 border-base-700">
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-x-4">
@@ -48,13 +48,17 @@ const Question: React.FC<Props> = ({ question }) => {
                      </div>
                   </div>
                </div>
-               <Actions direction="horizontal" actions={{}} />
+               <Actions direction="horizontal">
+                  <div>asd</div>
+               </Actions>
             </div>
             <div className="w-full p-4 mt-5 rounded-lg bg-base-750">
                <div className="text-[0.7rem] font-semibold uppercase text-rose-400">
                   asks you
                </div>
-               <div className="text-xl font-semibold">{question.question}</div>
+               <div className="text-xl font-semibold break-words">
+                  {question.question}
+               </div>
                <div className="mt-4 text-xs font-medium text-zinc-500">
                   1 week ago
                </div>
@@ -79,11 +83,12 @@ const Question: React.FC<Props> = ({ question }) => {
                         placeholder={`Write an answer to tyler...`}
                         tools="all"
                         className="h-24"
-                        max={1000}
+                        max={300}
                         autoFocus={true}
                         value={answer}
                         setValue={setAnswer}
                         onAction={answerAction}
+                        loading={createAnswer.isLoading}
                      />
                   </div>
                </div>
