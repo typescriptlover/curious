@@ -2,11 +2,8 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { trpc } from '../../lib/trpc';
-import Recommended from '../../layouts/Recommended';
-import Sidebar from '../../layouts/Sidebar';
 
 import Profile from '../../components/User/Profile/Profile';
-import Write from '../../components/ui/Write';
 import Filter from '../../components/User/Filter';
 import { TUserFilter } from '../../types/types';
 import Error from '../../components/User/Error';
@@ -16,23 +13,25 @@ import Answers from '../../components/User/Filters/Answers';
 import Posts from '../../components/User/Filters/Posts';
 import Ask from '../../components/User/Ask';
 import Meta from '../../components/Meta';
+import { PageWithRecommended } from '../../layouts/Page';
 
 interface HydrateProps {
    filter: TUserFilter;
    username: string;
 }
 const Hydrate: React.FC<HydrateProps> = ({ filter, username }) => {
-   if (filter === 'All') {
+   if (filter.name === 'All') {
       return <All username={username} />;
-   } else if (filter === 'Answers') {
+   } else if (filter.name === 'Answers') {
       return <Answers username={username} />;
-   } else if (filter === 'Posts') {
+   } else if (filter.name === 'Posts') {
       return <Posts username={username} />;
    }
 
    return null;
 };
 
+// TODO: make use of router query for tab filtering and push to query when selected
 const User = () => {
    const router = useRouter();
    const { username } = router.query as Record<string, any>;
@@ -43,8 +42,25 @@ const User = () => {
       username,
    });
 
-   const filters: TUserFilter[] = ['All', 'Answers', 'Posts'];
-   const [filter, setFilter] = useState<TUserFilter>('All');
+   const filters: TUserFilter[] = [
+      {
+         name: 'All',
+         icon: 'comments-question',
+      },
+      {
+         name: 'Answers',
+         icon: 'comment',
+      },
+      {
+         name: 'Questions',
+         icon: 'comment-question',
+      },
+      {
+         name: 'Posts',
+         icon: 'comment-pen',
+      },
+   ];
+   const [filter, setFilter] = useState<TUserFilter>(filters[0]!);
 
    if (isLoading) return null;
 
@@ -69,15 +85,7 @@ const User = () => {
 };
 
 User.getLayout = (page: any) => {
-   return (
-      <div className="w-full max-w-6xl mx-auto">
-         <Sidebar />
-         <div className="w-full pl-[14rem] gap-x-8 flex items-start">
-            <div className="w-full">{page}</div>
-            <Recommended />
-         </div>
-      </div>
-   );
+   return <PageWithRecommended page={page} />;
 };
 
 export default User;

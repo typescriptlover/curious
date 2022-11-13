@@ -23,8 +23,8 @@ const Posts: React.FC<Props> = ({ username }) => {
    if (!data || !data.payload || !data.payload.length)
       return (
          <div className="items-center justify-center w-full mb-6 text-center mt-14">
-            <div className="text-5xl opacity-25 text-rose-400">
-               <i className="fa-duotone fa-fw fa-message-pen" />
+            <div className="text-5xl opacity-40 text-rose-400">
+               <i className="fa-duotone fa-fw fa-comment-pen" />
             </div>
             <h2 className="mt-6 text-2xl font-bold text-rose-400">
                Empty posts.

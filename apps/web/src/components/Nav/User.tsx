@@ -17,7 +17,7 @@ interface DropdownLinkProps extends LinkProps {
 const DropdownLink: React.FC<DropdownLinkProps> = ({ children, ...props }) => {
    return (
       <Link
-         className="block w-full px-3 py-2 text-sm font-semibold text-left transition duration-200 ease-linear rounded-lg focus:outline-none hover:bg-base-750 focus:bg-base-750"
+         className="block w-full px-3 py-2 text-sm font-semibold text-left transition duration-200 ease-linear rounded-lg focus:outline-none hover:bg-base-700 focus:bg-base-700"
          {...props}
       >
          {children}
@@ -38,7 +38,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
    return (
       <button
          className={clsx(
-            'block w-full px-3 py-2 text-sm font-semibold text-left transition duration-200 ease-linear rounded-lg focus:outline-none hover:bg-base-750 focus:bg-base-750',
+            'block w-full px-3 py-2 text-sm font-semibold text-left transition duration-200 ease-linear rounded-lg focus:outline-none hover:bg-base-700 focus:bg-base-700',
             className
          )}
          {...props}
@@ -80,13 +80,12 @@ const User = () => {
             ref={ref}
             showDropdown={showDropdown}
             setShowDropdown={setShowDropdown}
-            className="p-2 border-2 shadow-2xl bg-base-850 border-base-750 w-36 rounded-xl"
+            className="p-2 border-2 shadow-2xl bg-base-800 border-base-700 w-36 rounded-xl"
          >
             <div className="flex flex-col">
                <DropdownLink href={`/@${auth.username}`}>
                   My Profile
                </DropdownLink>
-               <DropdownLink href="/notifications">Notifications</DropdownLink>
                <DropdownButton className="text-red-400" onClick={Logout}>
                   Logout
                </DropdownButton>
