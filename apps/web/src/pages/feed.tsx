@@ -1,3 +1,6 @@
+import Meta from '../components/Meta';
+import { PageWithRecommended } from '../layouts/Page';
+import Recommended from '../layouts/Recommended';
 import Sidebar from '../layouts/Sidebar';
 
 const Feed = () => {
@@ -5,12 +8,7 @@ const Feed = () => {
 };
 
 Feed.getLayout = (page: any) => {
-   return (
-      <div className="w-full max-w-6xl mx-auto">
-         <Sidebar />
-         <div className="w-full pl-[14rem]">{page}</div>
-      </div>
-   );
+   return <PageWithRecommended page={page} meta={<Meta title="feed" />} />;
 };
 
 export default Feed;

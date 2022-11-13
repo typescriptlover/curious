@@ -5,7 +5,11 @@ import Question from '../components/Question/Question';
 import { trpc } from '../lib/trpc';
 import { useState } from 'react';
 import Meta from '../components/Meta';
+import { PageWithRecommended } from '../layouts/Page';
 
+// TODO: add tabbing system
+// TODO: add notifications tab in dashboard
+// TODO: add archives tab in dashboard
 const Dashboard = () => {
    const [page, setPage] = useState<number>(1);
 
@@ -22,7 +26,7 @@ const Dashboard = () => {
    if (!data || !data.payload || !data.payload.length) {
       return (
          <div className="items-center justify-center w-full text-center">
-            <div className="text-5xl opacity-25 text-rose-400">
+            <div className="text-5xl opacity-40 text-rose-400">
                <i className="fa-duotone fa-fw fa-sparkles" />
             </div>
             <h2 className="mt-6 text-2xl font-bold text-rose-400">
@@ -45,16 +49,7 @@ const Dashboard = () => {
 };
 
 Dashboard.getLayout = (page: any) => {
-   return (
-      <div className="w-full max-w-6xl mx-auto">
-         <Sidebar />
-         <div className="w-full pl-[14rem] gap-x-8 flex items-start">
-            <Meta title="dashboard" />
-            <div className="w-full">{page}</div>
-            <Recommended />
-         </div>
-      </div>
-   );
+   return <PageWithRecommended page={page} meta={<Meta title="dashboard" />} />;
 };
 
 export default Dashboard;

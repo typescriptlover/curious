@@ -2,6 +2,7 @@ import { NextRouter, useRouter } from 'next/router';
 import type { NextPage } from 'next';
 
 import '../styles/tailwind.css';
+import '../styles/global.css';
 import '../styles/fonts/satoshi.css';
 
 import Meta from '../components/Meta';
