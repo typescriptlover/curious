@@ -11,8 +11,13 @@ export const getQuestionsSchema = z
 export const createQuestionSchema = z
    .object({
       username: z.string(),
-      question: z.string().min(10, {
-         message: 'Question must be 10 characters or more',
-      }),
+      question: z
+         .string()
+         .min(10, {
+            message: 'Question must be 10 characters or more',
+         })
+         .max(300, {
+            message: 'Question must be 300 characters or less.',
+         }),
    })
    .strict();

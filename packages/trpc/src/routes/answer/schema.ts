@@ -5,7 +5,14 @@ import { paginateSchema } from '../../lib/paginate';
 export const createAnswerSchema = z
    .object({
       questionId: z.string(),
-      answer: z.string(),
+      answer: z
+         .string()
+         .min(1, {
+            message: 'Answer must be 1 characters or more',
+         })
+         .max(300, {
+            message: 'Answer must be 300 characters or less.',
+         }),
    })
    .strict();
 
