@@ -1,5 +1,4 @@
 import z from 'zod';
-import { isBase64 } from '../../lib/helpers';
 import { paginateSchema } from '../../lib/paginate';
 import { globalRegisterSchema } from '../auth/schema';
 
