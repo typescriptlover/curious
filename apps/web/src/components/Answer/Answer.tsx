@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 import Delete from '../Actions/Delete';
 import Block from '../Actions/Block';
 import Copy from '../Actions/Copy';
+import Archive from '../Actions/Archive';
 
 interface Props {
    answer: TAnswer;
@@ -40,7 +41,7 @@ const Answer: React.FC<Props> = ({ answer }) => {
                {answer.question.question}
             </div>
          </div>
-         <div className="mt-4 text-base overflow-auto font-semibold break-words">
+         <div className="mt-4 overflow-auto text-base font-semibold break-words">
             {answer.answer}
          </div>
          <div className="flex items-center mt-3 gap-x-4">
@@ -69,7 +70,7 @@ const Answer: React.FC<Props> = ({ answer }) => {
             </div>
             <Actions direction="horizontal">
                {auth && auth.username === answer.by.username ? (
-                  <Delete />
+                  <Archive />
                ) : (
                   <Copy />
                )}

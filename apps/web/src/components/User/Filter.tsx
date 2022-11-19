@@ -20,7 +20,7 @@ const Filter: React.FC<FilterProps> = ({ filters, filter, setFilter }) => {
                      'text-[0.9rem] relative flex-grow font-semibold will-change rounded-xl py-2.5 transition duration-200 ease-linear',
                      filter.name === f.name
                         ? 'text-white bg-rose-500 border-2 border-rose-500'
-                        : 'text-zinc-300 focus:scale-95 bg-base-650 hover:bg-base-600 hover:text-zinc-200 border-2 border-base-600'
+                        : 'text-zinc-300 focus:scale-95 bg-base-700 hover:bg-base-650 hover:text-zinc-200 border-2 border-base-600'
                   )}
                >
                   <span

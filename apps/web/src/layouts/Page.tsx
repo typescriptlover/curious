@@ -8,7 +8,7 @@ interface Props {
 
 export const PageWithRecommended: React.FC<Props> = ({ page, meta }) => {
    return (
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto 2xl:max-w-7xl">
          {meta}
          <Sidebar />
          <div className="w-full pl-[14rem] grid grid-cols-3 gap-x-8">
