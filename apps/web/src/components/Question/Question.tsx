@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { RouterOutputs, trpc } from '../../lib/trpc';
 
 import Actions from '../ui/Actions';
@@ -16,6 +17,9 @@ const Question: React.FC<Props> = ({ question }) => {
 
    const createAnswer = trpc.answer.createAnswer.useMutation({
       onSuccess(data) {
+         toast('Answered question', {
+            position: 'bottom-center',
+         });
          trpcCtx.question.getQuestions.refetch();
       },
       onError(err) {
@@ -31,7 +35,7 @@ const Question: React.FC<Props> = ({ question }) => {
    }
 
    return (
-      <div className="flex flex-col w-full overflow-auto gap-y-1">
+      <div className="flex flex-col w-full gap-y-1">
          <div className="w-full p-5 border rounded-xl bg-base-800 border-base-700">
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-x-4">
@@ -56,10 +60,10 @@ const Question: React.FC<Props> = ({ question }) => {
                <div className="text-[0.7rem] font-semibold uppercase text-rose-400">
                   asks you
                </div>
-               <div className="text-xl font-semibold break-words">
+               <div className="overflow-auto text-xl font-semibold break-words">
                   {question.question}
                </div>
-               <div className="mt-4 text-xs font-medium text-zinc-500">
+               <div className="mt-4 text-xs font-medium text-zinc-400">
                   1 week ago
                </div>
             </div>
@@ -101,7 +105,7 @@ const Question: React.FC<Props> = ({ question }) => {
                      <i className="fa-solid fa-fw fa-comment" />
                   </button>
                   <button className="w-full py-2 text-red-200 bg-red-600 rounded-lg">
-                     <i className="fa-solid fa-fw fa-trash" />
+                     <i className="fa-solid fa-fw fa-xmark" />
                   </button>
                </div>
             )}

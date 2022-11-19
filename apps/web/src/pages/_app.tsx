@@ -12,6 +12,7 @@ import FontAwesome from '../components/FontAwesome';
 import Container from '../layouts/Container';
 import { trpc } from '../lib/trpc';
 import { AuthProvider } from '../contexts/auth';
+import Toast from '../components/Toast';
 
 type NextPageWithLayout = NextPage & {
    getLayout?: (page: React.ReactElement, query: NextRouter) => React.ReactNode;
@@ -34,6 +35,7 @@ const App = ({ Component, props }: AppPropsWithLayout) => {
          <Meta />
 
          <Wrapper>
+            <Toast />
             <Nav />
             <Container>{getLayout(<Component {...props} />, router)}</Container>
          </Wrapper>

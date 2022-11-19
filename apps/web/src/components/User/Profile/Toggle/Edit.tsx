@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
+import toast from 'react-hot-toast';
 import { useAuth } from '../../../../contexts/auth';
 
 import { RouterInputs, trpc } from '../../../../lib/trpc';
@@ -35,6 +36,9 @@ const Edit: React.FC<Props> = ({
          } else {
             trpcCtx.user.getUser.refetch();
          }
+         toast('Edited profile', {
+            position: 'bottom-center',
+         });
       },
       onError: (err) => {
          console.log(err);
@@ -52,8 +56,6 @@ const Edit: React.FC<Props> = ({
          cancelEdit();
          return setIsEditing(false);
       }
-
-      console.log(payload);
 
       editProfile.mutate(payload);
    }
