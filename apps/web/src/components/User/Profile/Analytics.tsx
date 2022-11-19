@@ -1,26 +1,13 @@
 import clsx from 'clsx';
-import { RouterOutputs, trpc } from '../../../lib/trpc';
+
+import { TUser } from '../../../types/types';
 
 interface Props {
-   username: string;
+   user: TUser;
    isEditing: boolean;
 }
 
-const Analytics: React.FC<Props> = ({ username, isEditing }) => {
-   const { data, error, isLoading } = trpc.user.getAnalytics.useQuery({
-      username,
-   });
-
-   function displayCount(
-      type: keyof RouterOutputs['user']['getAnalytics']['payload']
-   ) {
-      if (isLoading || error || !data || !data.payload) {
-         return '?';
-      }
-
-      return data.payload[type];
-   }
-
+const Analytics: React.FC<Props> = ({ user, isEditing }) => {
    return (
       <div
          className={clsx(
@@ -30,7 +17,7 @@ const Analytics: React.FC<Props> = ({ username, isEditing }) => {
       >
          <div className="p-4 rounded-lg bg-base-750">
             <div className="text-lg font-semibold text-rose-400">
-               {displayCount('questions')}
+               {user._count.questions}
             </div>
             <div className="text-xs font-medium text-zinc-400">
                questions received
@@ -38,7 +25,7 @@ const Analytics: React.FC<Props> = ({ username, isEditing }) => {
          </div>
          <div className="p-4 rounded-lg bg-base-750">
             <div className="text-lg font-semibold text-rose-400">
-               {displayCount('answersCreated')}
+               {user._count.answersCreated}
             </div>
             <div className="text-xs font-medium text-zinc-400">
                answers given
@@ -46,7 +33,7 @@ const Analytics: React.FC<Props> = ({ username, isEditing }) => {
          </div>
          <div className="p-4 rounded-lg bg-base-750">
             <div className="text-lg font-semibold text-rose-400">
-               {displayCount('questionsCreated')}
+               {user._count.questionsCreated}
             </div>
             <div className="text-xs font-medium text-zinc-400">
                questions asked
@@ -54,7 +41,7 @@ const Analytics: React.FC<Props> = ({ username, isEditing }) => {
          </div>
          <div className="p-4 rounded-lg bg-base-750">
             <div className="text-lg font-semibold text-rose-400">
-               {displayCount('answers')}
+               {user._count.answers}
             </div>
             <div className="text-xs font-medium text-zinc-400">
                answers received

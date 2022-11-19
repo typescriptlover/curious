@@ -22,7 +22,17 @@ export default t.router({
          where: {
             username,
          },
-         select: excludeUserSafe,
+         select: {
+            ...excludeUserSafe,
+            _count: {
+               select: {
+                  answers: true,
+                  answersCreated: true,
+                  questions: true,
+                  questionsCreated: true,
+               },
+            },
+         },
       });
 
       if (!user) {
@@ -104,38 +114,6 @@ export default t.router({
          },
          payload: all,
          paginate: calculatePaginate(all.length, per, paginate.page),
-      };
-   }),
-   getAnalytics: t.procedure.input(userSchema).query(async ({ ctx, input }) => {
-      const { username } = input;
-
-      const user = await ctx.prisma.user.findFirst({
-         where: {
-            username,
-         },
-         include: {
-            _count: {
-               select: {
-                  answers: true,
-                  answersCreated: true,
-                  questions: true,
-                  questionsCreated: true,
-               },
-            },
-         },
-      });
-
-      if (!user) {
-         throw new TRPCError({
-            code: 'PARSE_ERROR',
-            message: 'User not found',
-         });
-      }
-
-      return {
-         payload: {
-            ...user._count,
-         },
       };
    }),
    editProfile: t.procedure

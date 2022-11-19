@@ -50,6 +50,7 @@ model Post {
     attachments String[]
     by          User     @relation("posts", fields: [byId], references: [id], onDelete: Cascade)
     byId        String
+    archive     Boolean  @default(false)
 
     updatedAt DateTime @updatedAt
     createdAt DateTime @default(now())
@@ -65,6 +66,7 @@ model Question {
     toId     String
     by       User    @relation("questionBy", fields: [byId], references: [id], onDelete: Cascade)
     byId     String
+    archive  Boolean @default(false)
 
     updatedAt DateTime @updatedAt
     createdAt DateTime @default(now())
@@ -81,6 +83,7 @@ model Answer {
     toId       String
     by         User     @relation("answerBy", fields: [byId], references: [id], onDelete: Cascade)
     byId       String
+    archive    Boolean  @default(false)
 
     updatedAt DateTime @updatedAt
     createdAt DateTime @default(now())
