@@ -96,7 +96,7 @@ const Profile: React.FC<Props> = ({ user }) => {
                isEditing={isEditing}
                changeEdit={changeEdit}
             />
-            <Analytics username={user.username} isEditing={isEditing} />
+            <Analytics user={user} isEditing={isEditing} />
          </div>
       </div>
    );

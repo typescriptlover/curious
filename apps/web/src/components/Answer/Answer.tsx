@@ -1,14 +1,12 @@
-import Actions from '../ui/Actions';
+import TimeAgo from 'timeago-react';
 
-import { TAnswer } from '../../types/types';
+import Actions from '../ui/Actions';
 import Link from '../ui/Link';
 import { useAuth } from '../../contexts/auth';
 import getImage from '../../lib/image';
-import { useMemo } from 'react';
-import Delete from '../Actions/Delete';
-import Block from '../Actions/Block';
 import Copy from '../Actions/Copy';
 import Archive from '../Actions/Archive';
+import { TAnswer } from '../../types/types';
 
 interface Props {
    answer: TAnswer;
@@ -21,7 +19,7 @@ const Answer: React.FC<Props> = ({ answer }) => {
       <div className="w-full p-5 border rounded-xl bg-base-750 border-base-650">
          <div className="p-4 rounded-lg bg-base-700">
             <Link
-               href={`/@${answer.question.by.username}`}
+               href={`/${answer.question.by.username}`}
                className="inline-flex items-center group gap-x-4"
             >
                <img
@@ -54,7 +52,7 @@ const Answer: React.FC<Props> = ({ answer }) => {
                   {answer.by.displayName}
                </div>
                <div className="text-xs font-medium text-zinc-400">
-                  1 week ago
+                  <TimeAgo datetime={answer.createdAt} locale="cus" />
                </div>
             </div>
          </div>

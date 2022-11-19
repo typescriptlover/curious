@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import TimeAgo from 'timeago-react';
 import { useAuth } from '../../contexts/auth';
 import getImage from '../../lib/image';
 import { TPost } from '../../types/types';
@@ -17,7 +18,7 @@ const Post: React.FC<Props> = ({ post }) => {
    const { auth } = useAuth();
 
    return (
-      <div className="w-full p-5 overflow-auto bg-base-700 rounded-2xl">
+      <div className="w-full p-5 bg-base-700 rounded-2xl">
          <div className="flex items-center gap-x-4">
             <img
                className="object-cover w-12 h-12 rounded-full"
@@ -28,11 +29,13 @@ const Post: React.FC<Props> = ({ post }) => {
                   {post.by.displayName}
                </div>
                <div className="text-xs font-medium text-zinc-400">
-                  2 weeks ago
+                  <TimeAgo datetime={post.createdAt} locale="cus" />
                </div>
             </div>
          </div>
-         <div className="grid mt-5 font-semibold break-words">{post.body}</div>
+         <div className="grid mt-5 overflow-auto font-semibold break-words">
+            {post.body}
+         </div>
          {!!post.attachments.length && (
             <Attachments attachments={post.attachments} />
          )}

@@ -83,7 +83,7 @@ const User = () => {
             className="p-2 border-2 shadow-2xl bg-base-800 border-base-700 w-36 rounded-xl"
          >
             <div className="flex flex-col">
-               <DropdownLink href={`/@${auth.username}`}>
+               <DropdownLink href={`/${auth.username}`}>
                   My Profile
                </DropdownLink>
                <DropdownButton className="text-red-400" onClick={Logout}>

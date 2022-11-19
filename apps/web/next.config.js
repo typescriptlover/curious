@@ -8,12 +8,4 @@ module.exports = withBundleAnalyzer({
    swcMinify: true,
    poweredByHeader: false,
    trailingSlash: false,
-   async rewrites() {
-      return [
-         {
-            source: '/@:user',
-            destination: '/u/:user',
-         },
-      ];
-   },
 });

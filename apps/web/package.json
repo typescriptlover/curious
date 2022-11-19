@@ -27,7 +27,9 @@
       "react": "18.2.0",
       "react-dom": "18.2.0",
       "react-focus-lock": "^2.9.1",
-      "react-hot-toast": "^2.4.0"
+      "react-hot-toast": "^2.4.0",
+      "timeago-react": "^3.0.5",
+      "timeago.js": "^4.0.2"
    },
    "devDependencies": {
       "@next/bundle-analyzer": "^12.3.1",

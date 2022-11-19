@@ -1,5 +1,6 @@
 import { NextRouter, useRouter } from 'next/router';
 import type { NextPage } from 'next';
+import * as timeago from 'timeago.js';
 
 import '../styles/tailwind.css';
 import '../styles/global.css';
@@ -13,10 +14,10 @@ import Container from '../layouts/Container';
 import { trpc } from '../lib/trpc';
 import { AuthProvider } from '../contexts/auth';
 import Toast from '../components/Toast';
+import { localeFunc } from '../lib/locale';
+import { NextPageWithLayout } from '../types/types';
 
-type NextPageWithLayout = NextPage & {
-   getLayout?: (page: React.ReactElement, query: NextRouter) => React.ReactNode;
-};
+timeago.register('cus', localeFunc);
 
 interface AppPropsWithLayout {
    Component: NextPageWithLayout;
@@ -24,7 +25,11 @@ interface AppPropsWithLayout {
 }
 
 const App = ({ Component, props }: AppPropsWithLayout) => {
-   const { data } = trpc.auth.me.useQuery();
+   const { data } = trpc.auth.me.useQuery(undefined, {
+      retry: false,
+      refetchOnMount: true,
+      refetchOnWindowFocus: false,
+   });
 
    const getLayout = Component.getLayout || ((page) => page);
    const router = useRouter();
