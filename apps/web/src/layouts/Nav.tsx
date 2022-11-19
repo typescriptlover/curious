@@ -7,41 +7,8 @@ import Link from '../components/ui/Link';
 
 import { useAuth } from '../contexts/auth';
 
-interface NavLinkProps {
-   href: string;
-   children: React.ReactNode;
-}
-
-const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
-   return (
-      <Link
-         href={href}
-         className="font-medium transition duration-200 ease-linear text-zinc-300 hover:text-white"
-      >
-         {children}
-      </Link>
-   );
-};
-
 const Nav = () => {
    const { auth } = useAuth();
-   const router = useRouter();
-
-   const [scrolled, setScrolled] = useState<boolean>(false);
-
-   useEffect(() => {
-      function onScroll(e: any) {
-         const top = window.pageYOffset || document.documentElement.scrollTop;
-         if (top < 10) {
-            setScrolled(false);
-         } else {
-            setScrolled(true);
-         }
-      }
-
-      document.addEventListener('scroll', onScroll);
-      return () => document.removeEventListener('scroll', onScroll);
-   }, []);
 
    return (
       <nav

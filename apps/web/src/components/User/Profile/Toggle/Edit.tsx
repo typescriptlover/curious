@@ -32,10 +32,11 @@ const Edit: React.FC<Props> = ({
          updateAuth(payload);
          setIsEditing(false);
          if (auth.username !== username) {
-            router.push(`/@${username}`);
+            router.push(`/${username}`);
          } else {
             trpcCtx.user.getUser.refetch();
          }
+         cancelEdit();
          toast('Edited profile', {
             position: 'bottom-center',
          });
